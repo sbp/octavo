@@ -21,7 +21,7 @@ $ ->
   body.keyup on_keyup
   body.mouseup on_mouseup
   body.focusin on_focusin
-  body.bind "paste", on_paste
+  body.on "paste", on_paste
 
 keycodes =
   186: ";"
