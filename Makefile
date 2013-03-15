@@ -13,3 +13,8 @@ build/octavo.min.js: build/octavo.js
 
 build/octavo.combo.min.js: lib/jquery.js lib/rangy.js build/octavo.min.js
 	cat lib/jquery.js lib/LF lib/rangy.js lib/LF build/octavo.min.js > build/octavo.combo.min.js
+
+commit: ;
+	git add -A .
+	git commit
+	git push -u origin master
