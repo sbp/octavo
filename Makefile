@@ -17,4 +17,4 @@ build/octavo.combo.min.js: lib/jquery.js lib/rangy.js build/octavo.min.js
 commit: ;
 	git add -A .
 	git commit
-	git push origin master
+	git push
