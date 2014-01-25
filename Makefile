@@ -1,7 +1,7 @@
 all: build/octavo.combo.min.js
 
-lib/rangy.js: lib/rangy-core.js lib/rangy-selectionsaverestore.js lib/rangy-textrange.js
-	cat lib/rangy-core.js lib/LF lib/rangy-selectionsaverestore.js lib/LF lib/rangy-textrange.js lib/SEMI > lib/rangy.js
+lib/rangy.js: lib/rangy-core.js lib/rangy-selectionsaverestore.js
+	cat lib/rangy-core.js lib/LF lib/rangy-selectionsaverestore.js lib/SEMI > lib/rangy.js
 
 build/octavo.js: src/octavo.coffee
 	coffee -o build/ -c src/octavo.coffee

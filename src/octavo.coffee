@@ -23,6 +23,7 @@ $ ->
   body.focusin on_focusin
   body.on "paste", on_paste
 
+# At least some of these are Chrome specific
 keycodes =
   186: ";"
   187: "="
@@ -54,6 +55,7 @@ key = (e) ->
 
 on_keydown = (e) ->
   pressed = key e
+  console.log pressed
 
   if "Ctrl+E" is pressed
     octavo.toggle()
@@ -365,7 +367,7 @@ set_position = (elem, place) ->
   selection.setSingleRange range
   update_status get_position() # @@ not needed? events make statuses go!
 
-# selectStartFirst
+# selectStartFirst
 # selectFirstStart
 
 select_first_element = (tag) ->
@@ -410,17 +412,17 @@ create_status = () ->
   status.css
     "position": "fixed"
     "top": "0"
-    "left": "0"
+    "right": "0"
     "width": "20%"
     "box-shadow": "0 0 32px rgba(192, 192, 192, 0.5)"
     "text-align": "right"
     "font-size": "22px"
     "height": "24px"
-    "border-right": "1px solid #ccc"
+    "border-left": "1px solid #ccc"
     "border-bottom": "1px solid #ccc"
     "padding": "6px 24px"
     "vertical-align": "middle"
-    "border-bottom-right-radius": "6px"
+    "border-bottom-left-radius": "6px"
     "background": "#fff"
 
   body.append status.slideDown 100
@@ -542,7 +544,7 @@ update_status = (position) ->
   if not status[0]?.childNodes?.length
     status.append("Octavo")
 
-  # deal with phrases here
+  # deal with phrases here
   if position.block
     pad_block position.block
 
@@ -576,7 +578,7 @@ octavo.input = (callback, initial = "") ->
     "margin": "0"
     "padding": "0"
     "top": "48px"
-    "left": "12px"
+    "right": "12px"
 
   input = $ "<input/>"
   input.css
@@ -605,7 +607,7 @@ octavo.input = (callback, initial = "") ->
 create_command_menu = (position, node) ->
   console.log ":create_command_menu"
 
-  # This is effectively a toggle
+  # This is effectively a toggle
   menus = $("div.OctavoCommandMenu")
   if menus.size()
     menus.remove()
@@ -624,7 +626,7 @@ create_command_menu = (position, node) ->
   div.css
     "position": "fixed"
     "top": "48px"
-    "left": "12px"
+    "right": "12px"
     "font-size": "14px"
     "font-weight": "300"
     "width": "318px"
@@ -811,7 +813,7 @@ message = (text, status) ->
   div.css
     "position": "fixed"
     "bottom": "24px"
-    "left": "24px"
+    "right": "24px"
     "padding": "3px 12px"
     "font-size": "18px"
     "font-weight": "300"
@@ -1285,6 +1287,8 @@ save = (edit) ->
         console.log "Error!", err.responseText
         message msg, "failure"
     console.log "AJAX call made"
+  else
+    message "Can't save, not an HTTP document!", "failure"
 
   if edit isnt "off"
     octavo.on()
@@ -1304,7 +1308,7 @@ escape_interface = (position) ->
     octavo.restoreCaret()
     return
 
-  # save_and_quit
+  # save_and_quit
   # "off" stops editing from being turned back on
   # This means that the message will definitely show up
   save "off"
@@ -1372,7 +1376,7 @@ octavo.command = (category, name, description, command) ->
   octavo.commands[category][name] = wrapped
 
 
-# Modify Commands
+# Modify Commands
 
 # maybe select = true?
 # octavo.commands["Modify"]["change"] element, select = false
@@ -1824,7 +1828,7 @@ weirds =
   div: true
   pre: true
 
-# @@ document this
+# @@ document this
 weird_to_paragraph = (position) ->
   # @@ This causes return from change-to-div to not work
   if position.selected
