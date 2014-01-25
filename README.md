@@ -6,7 +6,9 @@ Octavo is in quite early development. There are some bugs!
 
 Usage:
 
-    <script src="build/octavo.combo.min.js"></script>
-    <h1>Some HTML here</h1>
+```html
+<script src="build/octavo.combo.min.js"></script>
+<h1>Some HTML here</h1>
+```
 
 You can also just use `build/octavo.min.js` if you don't want version bundled with jQuery and Rangy.
